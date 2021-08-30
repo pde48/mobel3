@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_status_tracking,mobel.status_tracking,model_status_tracking,base.group_user,1,1,1,1
+access_sale_generate_purchases,mobel.sale_generate_purchases,model_sale_generate_purchases,base.group_user,1,1,1,1
+access_purchase_import,mobel.purchase_import,model_purchase_import,base.group_user,1,1,1,1
+access_sale_generate_purchases_pending,mobel.sale_generate_purchases_pending,model_sale_generate_purchases_pending,base.group_user,1,1,1,1
+access_purchase_generate_excepction,mobel.purchase_generate_excepction,model_purchase_generate_excepction,base.group_user,1,1,1,
+access_exception_purchase_tracing,mobel.exception_purchase_tracing,model_exception_purchase_tracing,base.group_user,1,1,1,
+
+
+

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Sequences for purchase.order.import -->
+        <record id="seq_purchase_order_import" model="ir.sequence">
+            <field name="name">Purchase Order Import</field>
+            <field name="code">purchase.import</field>
+            <field name="prefix">IMP-%(y)s-</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_purchase_order_exception" model="ir.sequence">
+            <field name="name">Purchase Order Exception</field>
+            <field name="code">exception.purchase.tracing</field>
+            <field name="prefix">PO-EXECP-%(y)s-</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

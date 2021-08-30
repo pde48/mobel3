@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="exception_purchase_tracing_view_form">
+      <field name="name">exception.purchase.tracing.view.form</field>
+      <field name="model">exception.purchase.tracing</field>
+      <field name="arch" type="xml">
+          <form string="Exception Purchase Tracing" class="o_purchase_order">
+              <header>
+                <!--<field name="state" widget="statusbar" statusbar_visible="draft,in_process,terminated,cancel" />-->
+              </header>
+              <sheet>
+                <group>
+                  <group colspan="4">
+                      <field name="name" readonly="1" force_save="1"/>
+                      <field name="purchase_id"/>           
+                      <field name="po_name_order_line"/>           
+                      <field name="po_product_qty_line"/>
+                      <field name="po_product_id_line"/>
+                 </group>
+                <group colspan="4">
+                      <field name="po_price_unit_line"/>
+                      <field name="po_date_planned_line"/>
+                      <field name="po_sale_order_line"/>
+                      <field name="po_order_line"/>              
+                  </group>
+
+                </group>
+
+              </sheet>
+              <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+          </form>
+      </field>
+  </record>
+
+  <record id="exception_purchase_tracing_view_search" model="ir.ui.view">
+            <field name="name">exception.purchase.tracing.search</field>
+            <field name="model">exception.purchase.tracing</field>
+            <field name="arch" type="xml">
+                <search string="Search Exception Purchase Tracing">
+                    <field name="name" string="Number" filter_domain="[('name', 'ilike', self))]"/>
+
+                    <field name="name" readonly="1" force_save="1"/>
+                    <field name="purchase_id"/>                     
+                    <field name="po_name_order_line"/>     
+                
+                    <separator/>
+                    <filter name="name" string="Number"/>
+                    <filter name="purchase_id" string="Purchase Origin"/>                    
+                    <filter name="po_date_planned_line" string="Order Date" date="po_date_planned_line"/>
+                    <separator/>
+                    
+                    <group expand="0" string="Group By">
+                        <filter string="Number" name="name" domain="[]" context="{'group_by': 'name'}"/>                        
+                        <filter string="Date" name="po_date_planned_line" domain="[]" context="{'group_by': 'po_date_planned_line'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+
+
+  <record id="exception_purchase_tracing_view_tree" model="ir.ui.view">
+        <field name="name">exception.purchase.tracing.view.tree</field>
+        <field name="model">exception.purchase.tracing</field>
+        <field name="arch" type="xml">
+            <tree string="Puchase Import">
+                <field name="name" readonly="1"/>
+                <field name="purchase_id"/>           
+                <field name="po_name_order_line"/>           
+                <field name="po_product_qty_line"/>
+                <field name="po_product_id_line"/>
+                <field name="po_price_unit_line"/>
+                <field name="po_date_planned_line"/>
+                <field name="po_sale_order_line"/>
+                <field name="po_order_line"/>     
+
+            </tree>
+        </field>
+    </record>
+
+ <record id="exception_purchase_tracing_action" model="ir.actions.act_window">
+        <field name="name">Exception Purchase Tracing</field>
+        <field name="res_model">exception.purchase.tracing</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="mobel.exception_purchase_tracing_view_tree"/>
+        <field name="search_view_id" ref="mobel.exception_purchase_tracing_view_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            Create Your Exception Purchase Tracing
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+        id="menu_exception_purchase_tracing"
+        name="Exception Purchase Tracing"
+        action="mobel.exception_purchase_tracing_action"
+        parent="mobel.menu_operations_purchase_import"
+        sequence="3"/>
+
+</data>
+</odoo>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="view_sale_generate_purchase" model="ir.ui.view">
+            <field name="name">Generar Compras</field>
+            <field name="model">sale.generate.purchases</field>
+            <field name="arch" type="xml">
+                <form string="Generar Compras">
+                    <p class="oe_grey">
+                        
+                    </p>
+                    <group>
+                        <field name="company_id" force_save="True" readonly="True"/>
+                        <field name="count" attrs="{'invisible': [('count','=', 1)]}" readonly="True"/>
+                        <field name="partner_id_purchase" />
+                        
+                    </group>
+                    <footer>
+                        <button name="generate_purchases" id="generate_purchases_id" string="Execute" type="object"
+                            class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_view_generate_purchase" model="ir.actions.act_window">
+            <field name="name">Generar Compras</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.generate.purchases</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_sale_generate_purchase"/>
+            <field name="target">new</field>
+            <!-- TODO: check if we need this -->
+            <field name="binding_model_id" ref="sale.model_sale_order_line" />
+            <field name="binding_view_types">list</field>
+        </record>
+
+
+        <record id="view_sale_generate_purchase_pending" model="ir.ui.view">
+            <field name="name">view.sale.generate.purchase.pending</field>
+            <field name="model">sale.generate.purchases.pending</field>
+            <field name="arch" type="xml">
+                <form string="Ordenes Pendientes">
+                    <p class="oe_grey">
+                        
+                    </p>
+                    <group>
+                        <field name="count" attrs="{'invisible': [('count','=', 1)]}" readonly="True"/>
+                        <field name="state_process" />
+                        <field name="motive_canceled" attrs="{'invisible': [('state_process','!=', 'canceled')]}" />
+                        
+                    </group>
+
+                    <group>
+                        <field name="decision_purchase" attrs="{'invisible': [('state_process','!=', 'not_available')]}" />
+                        <field name="ammount_coupon" attrs="{'invisible': ['|',('state_process','!=', 'not_available'),('decision_purchase','==', False)]}" />
+                        
+                    </group>
+
+
+                    
+
+                    <footer>
+                        <button name="generate_purchases_pending" id="generate_purchases_pending_id" string="Execute" type="object"
+                            class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+
+        <record id="action_generate_purchase_pending" model="ir.actions.act_window">
+            <field name="name">Ordenes Pendientes/No disponibles</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.generate.purchases.pending</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="mobel.view_sale_generate_purchase_pending"/>
+            <field name="target">new</field>
+            <!-- TODO: check if we need this -->
+            <field name="binding_model_id" ref="sale.model_sale_order_line" />
+            <field name="binding_view_types">list</field>
+        </record>
+
+
+
+        <record id="view_generate_exception_purchase" model="ir.ui.view">
+            <field name="name">view.purchase.generate.excepction</field>
+            <field name="model">purchase.generate.excepction</field>
+            <field name="arch" type="xml">
+                <form string="Exceptions Ordens">
+                    <p class="oe_grey">
+                    </p>
+                    <group>
+                        <field name="count" attrs="{'invisible': [('count','=', 1)]}" readonly="True"/>
+                    </group>
+
+                    <group>
+                        <field name="decision_purchase" />
+                        <field name="motive_decision_purchase" />                        
+                        <field name="motive_order" />         
+
+                    </group>
+
+                    <footer>
+                        <button name="process_desicion" id="process_desicion_id" string="Execute" type="object"
+                            class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+    <record id="action_view_generate_exception_purchase" model="ir.actions.act_window">
+        <field name="name">Exceptions Ordens</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">purchase.generate.excepction</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="mobel.view_generate_exception_purchase"/>
+        <field name="target">new</field>
+        <!-- TODO: check if we need this -->
+        <field name="binding_model_id" ref="purchase.model_purchase_order_line" />
+        <field name="binding_view_types">list</field>
+    </record>
+
+
+</odoo>

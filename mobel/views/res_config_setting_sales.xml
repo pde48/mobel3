@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+	<record id="res_config_settings_view_form_inherit_mobel_sales" model="ir.ui.view">
+	<field name="name">Mobel Configuracion</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="1"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('settings')]" position="inside">
+				<div class="app_settings_block o_not_app" data-string="Mobel" data-key="mobel">
+				<h2>Mobel</h2>
+				<div class="row mt16 o_settings_container" id="partner_id_mobel_setting_sales">
+				<div class="row mt16 o_settings_container" id="mobel_setting_sales">
+
+						<group name='global_config_mobel' string='Global Configuration'>
+							<field name="company_purchase_import_id"/>
+							<field name="company_purchase_supplier_id"/>
+
+						</group>
+
+						<group name='config_inventory_mobel' string='Inventory'>
+							<field name="warehouse_default_uy_id"/>
+							<field name="warehouse_default_usa_id"/>
+
+							<field name="location_default_uy_id"/>
+							<field name="location_default_usa_id"/>
+
+						</group>
+						<!--<group name='global_config' string='Global Configuration'>
+
+		                      <div class="col-12 col-lg-6 o_setting_box"
+		                           id="default_partner_purchase_id"
+		                           title="Compañia de Compra por Defecto">
+		                           <div class="o_setting_left_pane">
+		                               <field name="partner_purchase_id"/>
+		                           </div>
+		                           <div class="o_setting_right_pane">
+		                               <label for="partner_purchase_id"/>
+		                               <div class="text-muted">
+		                                   Compañia de Compra por Defecto
+		                               </div>
+		                           </div>
+		                       </div>
+
+		                   </group>-->
+		                   </div>
+							</div>
+					</div>
+					</xpath>
+			</field>
+		</record>
+
+	
+		<record id="action_settings_sales_mobel" model="ir.actions.act_window">
+            <field name="name">Configurations</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_id" ref="mobel.res_config_settings_view_form_inherit_mobel_sales"/>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+			<field name="context">{'module' : 'mobel', 'bin_size': False}</field>
+        </record>
+
+		<menuitem
+			id    ="menu_settings_sales_mobel"
+			name  ="Configuration Mobel"
+			parent="sale.menu_sale_config"
+			action="action_settings_sales_mobel"
+		/>
+	</data>
+
+
+
+	<record id="res_config_settings_view_form_inherit_mobel_sales_inherit" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.odoo.sales.mobel</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="mobel.res_config_settings_view_form_inherit_mobel_sales"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@data-key='mobel']" position="attributes">
+                    <attribute name="class">app_settings_block</attribute>
+                </xpath>
+            </field>
+        </record>
+</odoo>
